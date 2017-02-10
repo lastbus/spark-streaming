@@ -1,0 +1,12 @@
+<configuration>
+    <property>
+        <name>hbase.hconnection.threads.core</name>
+        <value>10</value>
+    </property>
+
+    <prperty>
+        <name>hbase.hconnection.threads.keepalivetime</name>
+        <value>60</value>
+    </prperty>
+
+</configuration>
