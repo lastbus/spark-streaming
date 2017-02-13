@@ -164,6 +164,9 @@ object TomcatAccessLogConsumerStream {
 
   }
 
+  /**
+    * 输出用法
+    */
   def printUsage = {
     println(
       s"""

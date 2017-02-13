@@ -12,13 +12,21 @@ object StatusReportUtil {
 
   val logger = LogManager.getLogger(this.getClass)
 
+  // 是否发送
   var send = false
+  // 发送是否成功
   var failed = false
+  // 错误消息队列的最大数量
   val max = 100
+  // 错误信息队列
   val mailReportList = new ArrayBuffer[MailReport](max)
+  // 发送错误信息的时间间隔
   val interval = FileUtil.getPropertiesMap("warning.properties").getOrElse("warning.status.interval", "30").toInt
 
-  // send e-mail for error http response status
+  /**
+    * 发送 tomcat 出错的http请求
+    * @param mailReport
+    */
   def send(mailReport: MailReport): Unit = {
     mailReportList.append(mailReport)
 
@@ -34,7 +42,9 @@ object StatusReportUtil {
 
   }
 
-  // a single thread to send mail
+  /**
+    * 发送邮件的线程，异步
+    */
   def sendThread = {
     val sendThread = new Thread(new Runnable {
       override def run(): Unit = {
@@ -61,6 +71,10 @@ object StatusReportUtil {
     sendThread.start()
   }
 
+  /**
+    * 发送邮件
+    * @param mailReports
+    */
   def sendMail(mailReports: Seq[MailReport]): Unit = {
     val mail = MailUtil.getMail()
     mail.setSubject(mailReports.head.subject)

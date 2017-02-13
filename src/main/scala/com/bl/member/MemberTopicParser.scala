@@ -20,6 +20,9 @@ object MemberTopicParser extends JSONParser {
   val keyTypeMap = mutable.Map.empty[String, (String, Array[Byte])]
   val columnFamilyBytes = Bytes.toBytes("member")
 
+  /**
+    * 初始化解析器
+    */
   def init(): Unit = {
     val properties = FileUtil.getPropertiesMap("memberJSON.properties")
 
@@ -34,6 +37,11 @@ object MemberTopicParser extends JSONParser {
     }
   }
 
+  /**
+    * 解析 json 字符串
+    * @param jsonString
+    * @return
+    */
   override def parse(jsonString: String): Put = {
     logger.warn(jsonString)
 

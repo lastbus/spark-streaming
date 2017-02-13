@@ -17,7 +17,10 @@ object MailUtil {
   val mailReportList = new ArrayBuffer[MailReport]()
 
 
-
+  /**
+    * 发送报警邮件
+    * @param mailReport
+    */
   def sendMail(mailReport: MailReport): Unit = {
     mailReport match {
       case msg1: StatusReport => StatusReportUtil.send(msg1)
@@ -74,7 +77,11 @@ object MailUtil {
 //  }
 
 
-
+  /**
+    * 得到发送邮件类
+    * @param mailType 邮件类型
+    * @return SimpleEmail
+    */
   private[warnning] def getMail(mailType: String = "default"): SimpleEmail = {
 
     val email = new SimpleEmail()
