@@ -1,8 +1,8 @@
 *.iml
-.idea/
-.idea_modules/
-target/
-.settings
-.classpath
-.project
+.idea/*
+.idea_modules/*
+target/*
+*.settings
+*.classpath
+*.project
 
